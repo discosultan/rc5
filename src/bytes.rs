@@ -1,6 +1,6 @@
 use core::cmp::min;
 
-pub trait ByteInteger {
+pub trait ByteIntegerExt {
     fn from_slice(s: &[u8]) -> Self;
 
     fn bitxor(self, rhs: Self) -> Self;
@@ -10,7 +10,7 @@ pub trait ByteInteger {
     fn wrapping_sub(self, rhs: Self) -> Self;
 }
 
-impl<const N: usize> ByteInteger for [u8; N] {
+impl<const N: usize> ByteIntegerExt for [u8; N] {
     fn from_slice(s: &[u8]) -> [u8; N] {
         let mut output = [0; N];
 

@@ -1,7 +1,7 @@
 use core::cmp::max;
 
 use crate::{
-    bytes::ByteInteger,
+    bytes::ByteIntegerExt,
     consts::{p, q},
 };
 

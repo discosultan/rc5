@@ -2,7 +2,7 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{FromPrimitive, One, ToPrimitive, Zero};
 
-use crate::bytes::ByteInteger;
+use crate::bytes::ByteIntegerExt;
 
 pub fn p<const WBIT: usize, const WBYTE: usize>() -> [u8; WBYTE] {
     // Number of terms to include in the series.
