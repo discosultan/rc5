@@ -1,3 +1,5 @@
+use core::cmp::max;
+
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{FromPrimitive, One, ToPrimitive, Zero};
@@ -41,19 +43,12 @@ fn big_rational_two() -> BigRational {
     BigRational::from_u8(2).unwrap()
 }
 
-fn factorial(n: u64) -> BigInt {
-    let mut result = BigInt::one();
-    for idx in 1..=n {
-        result *= idx;
-    }
-    result
-}
-
 fn approximate_e(terms: u64) -> BigRational {
     let mut e = BigRational::zero();
+    let mut factorial = BigInt::one();
     for idx in 0..terms {
-        let factorial_i = factorial(idx);
-        let term = BigRational::from_integer(BigInt::one()) / factorial_i;
+        factorial *= max(idx, 1);
+        let term = BigRational::from_integer(BigInt::one()) / &factorial;
         e += term;
     }
     e
