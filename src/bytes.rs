@@ -1,16 +1,16 @@
 use core::cmp::min;
 
-pub trait ByteInteger<const N: usize> {
-    fn from_slice(s: &[u8]) -> [u8; N];
+pub trait ByteInteger {
+    fn from_slice(s: &[u8]) -> Self;
 
-    fn bitxor(self, rhs: [u8; N]) -> [u8; N];
-    fn rotate_left(self, n: u128) -> [u8; N];
-    fn rotate_right(self, n: u128) -> [u8; N];
-    fn wrapping_add(self, rhs: [u8; N]) -> [u8; N];
-    fn wrapping_sub(self, rhs: [u8; N]) -> [u8; N];
+    fn bitxor(self, rhs: Self) -> Self;
+    fn rotate_left(self, n: u128) -> Self;
+    fn rotate_right(self, n: u128) -> Self;
+    fn wrapping_add(self, rhs: Self) -> Self;
+    fn wrapping_sub(self, rhs: Self) -> Self;
 }
 
-impl<const N: usize> ByteInteger<N> for [u8; N] {
+impl<const N: usize> ByteInteger for [u8; N] {
     fn from_slice(s: &[u8]) -> [u8; N] {
         let mut output = [0; N];
 
