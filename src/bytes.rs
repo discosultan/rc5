@@ -99,9 +99,8 @@ fn rotate<const N: usize>(
 
         let src_byte_idx = idx / 8;
         let src_bit_shift = idx % 8;
-        let src_bit = (value[src_byte_idx] >> src_bit_shift) & 1;
+        let src_bit = value[src_byte_idx] >> src_bit_shift;
 
-        output[dest_byte_idx] &= !(1 << dest_bit_shift);
         output[dest_byte_idx] |= src_bit << dest_bit_shift;
     }
 
