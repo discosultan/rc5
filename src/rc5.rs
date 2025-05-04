@@ -32,7 +32,7 @@ pub struct RC5<
     // generics in a const context.
     //
     // This is how the const generics below can be computed from the const generics above:
-    // - WORD_SIZE = 8 * WORD_BIT_SIZE
+    // - WORD_SIZE = WORD_BIT_SIZE / 8
     // - BLOCK_SIZE = 2 * WORD_SIZE
     // - EXPANDED_KEY_TABLE_LEN = 2 * (ROUNDS + 1)
     // - KEY_AS_WORDS_LEN = max(KEY_SIZE.div_ceil(WORD_SIZE), 1)
@@ -70,7 +70,7 @@ impl<
         }
     }
 
-    fn expand_key(key: [u8; KEY_SIZE]) -> [[u8; WORD_SIZE]; EXPANDED_KEY_TABLE_LEN] {
+    fn expand_key(key: [u8; KEY_SIZE]) -> [[u8; WORD_BIT_SIZE]; EXPANDED_KEY_TABLE_LEN] {
         let p = p::<WORD_BIT_SIZE, WORD_SIZE>();
         let q = q::<WORD_BIT_SIZE, WORD_SIZE>();
 
