@@ -7,7 +7,7 @@ use crate::{
 
 /// Provides the RC5 encryption algorithm.
 ///
-/// See https://www.grc.com/r&d/rc5.pdf for more info.
+/// See <https://www.grc.com/r&d/rc5.pdf> for more info.
 ///
 /// Example usage:
 /// ```
@@ -45,14 +45,14 @@ pub struct RC5<
 }
 
 impl<
-        const WORD_BIT_SIZE: usize,
-        const ROUNDS: usize,
-        const KEY_SIZE: usize,
-        const WORD_SIZE: usize,
-        const BLOCK_SIZE: usize,
-        const EXPANDED_KEY_TABLE_LEN: usize,
-        const KEY_AS_WORDS_LEN: usize,
-    >
+    const WORD_BIT_SIZE: usize,
+    const ROUNDS: usize,
+    const KEY_SIZE: usize,
+    const WORD_SIZE: usize,
+    const BLOCK_SIZE: usize,
+    const EXPANDED_KEY_TABLE_LEN: usize,
+    const KEY_AS_WORDS_LEN: usize,
+>
     RC5<
         WORD_BIT_SIZE,
         ROUNDS,
@@ -63,6 +63,7 @@ impl<
         KEY_AS_WORDS_LEN,
     >
 {
+    #[must_use]
     pub fn new(key: [u8; KEY_SIZE]) -> Self {
         Self {
             expanded_key_table: Self::expand_key(key),
@@ -125,6 +126,7 @@ impl<
     }
 
     /// Encrypts the plaintext block returning ciphertext block.
+    #[must_use]
     pub fn encrypt(&self, plaintext: [u8; BLOCK_SIZE]) -> [u8; BLOCK_SIZE] {
         let (a, b) = plaintext.split_at(WORD_SIZE);
         let mut a: [u8; WORD_SIZE] = a.try_into().unwrap();
@@ -154,6 +156,7 @@ impl<
     }
 
     /// Decrypts the ciphertext block returning plaintext block.
+    #[must_use]
     pub fn decrypt(&self, ciphertext: [u8; BLOCK_SIZE]) -> [u8; BLOCK_SIZE] {
         let (a, b) = ciphertext.split_at(WORD_SIZE);
         let mut a: [u8; WORD_SIZE] = a.try_into().unwrap();

@@ -44,7 +44,7 @@ impl<const N: usize> ByteIntegerExt for [u8; N] {
 
         let mut carry = false;
         for idx in 0..self.len() {
-            let temp_sum: u16 = (self[idx] as u16) + (rhs[idx] as u16) + carry as u16;
+            let temp_sum: u16 = u16::from(self[idx]) + u16::from(rhs[idx]) + u16::from(carry);
             carry = temp_sum >> 8 > 0;
             output[idx] = temp_sum as u8;
         }
@@ -57,7 +57,7 @@ impl<const N: usize> ByteIntegerExt for [u8; N] {
 
         let mut borrow = false;
         for idx in 0..self.len() {
-            let mut temp_diff: i16 = (self[idx] as i16) - (rhs[idx] as i16) - borrow as i16;
+            let mut temp_diff: i16 = i16::from(self[idx]) - i16::from(rhs[idx]) - i16::from(borrow);
             borrow = temp_diff < 0;
             if borrow {
                 temp_diff += (1 << 8) as i16;
@@ -112,11 +112,7 @@ fn rotate_left_dest_bit_idx(n: usize, i: usize, num_bits: usize) -> usize {
 }
 
 fn rotate_right_dest_bit_idx(n: usize, i: usize, num_bits: usize) -> usize {
-    if n > i {
-        num_bits - (n - i)
-    } else {
-        i - n
-    }
+    if n > i { num_bits - (n - i) } else { i - n }
 }
 
 #[cfg(test)]

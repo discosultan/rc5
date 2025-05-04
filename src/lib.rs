@@ -1,4 +1,4 @@
-//! Implements the RC5 encryption algorithm based on https://www.grc.com/r&d/rc5.pdf.
+//! Implements the RC5 encryption algorithm based on <https://www.grc.com/r&d/rc5.pdf>.
 //!
 //! Aims to provide a generalized implementation that works with any word bit size that is a
 //! multiple of 8 (i.e RC5-24/4/0, RC5-32/20/16, RC5-128/28/32 to name a few). The downside is that

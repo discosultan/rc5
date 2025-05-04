@@ -31,11 +31,7 @@ pub fn q<const WBIT: usize, const WBYTE: usize>() -> [u8; WBYTE] {
 }
 
 fn odd(value: u128) -> u128 {
-    if value % 2 == 0 {
-        value + 1
-    } else {
-        value
-    }
+    if value % 2 == 0 { value + 1 } else { value }
 }
 
 fn big_rational_two() -> BigRational {
