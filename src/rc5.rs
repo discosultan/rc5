@@ -70,7 +70,7 @@ impl<
         }
     }
 
-    fn expand_key(key: [u8; KEY_SIZE]) -> [[u8; WORD_BIT_SIZE]; EXPANDED_KEY_TABLE_LEN] {
+    fn expand_key(key: [u8; KEY_SIZE]) -> [[u8; WORD_SIZE]; EXPANDED_KEY_TABLE_LEN] {
         let p = p::<WORD_BIT_SIZE, WORD_SIZE>();
         let q = q::<WORD_BIT_SIZE, WORD_SIZE>();
 
